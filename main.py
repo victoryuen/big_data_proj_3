@@ -9,12 +9,12 @@ def main():
     print("----- Part 3 -----\n")
 
     # Decision Tree, no features removed
-    train_evaluate_print([], DecisionTreeClassifier)
+    train_evaluate_print([], DecisionTreeClassifier, True)
 
     print("\n----- Part 4 -----\n")
 
     # SVM, RBF kernel, no features removed
-    train_evaluate_print([], svm.SVC, "rbf")
+    train_evaluate_print([], svm.SVC, True, "rbf")
 
     print("\n----- Part 6 -----\n")
 
@@ -23,18 +23,18 @@ def main():
 
     # Decision Tree, 1 feature of lowest importance removed
     print("\n----- Lowest 1 removed -----\n")
-    # train_evaluate_print([lowest 1], DecisionTreeClassifier)
+    # train_evaluate_print([lowest 1], DecisionTreeClassifier, False)
 
     # Decision Tree, 4 feature of lowest importance removed
     print("\n----- Lowest 4 removed -----\n")
-    # train_evaluate_print([lowest 4], DecisionTreeClassifier)
+    # train_evaluate_print([lowest 4], DecisionTreeClassifier, False)
 
     # Decision Tree, 10 feature of lowest importance removed
     print("\n----- Lowest 10 removed -----\n")
-    # train_evaluate_print([lowest 10], DecisionTreeClassifier)
+    # train_evaluate_print([lowest 10], DecisionTreeClassifier, False)
 
 
-def train_evaluate_print(excluded_features: list, classifier: any, kernel: str = ""):
+def train_evaluate_print(excluded_features: list, classifier: any, show_matrix: bool, kernel: str = ""):
     data = get_data(excluded_features);
 
     if kernel == "":
@@ -54,9 +54,10 @@ def train_evaluate_print(excluded_features: list, classifier: any, kernel: str =
         tree.plot_tree(trained["model"], fontsize=6, feature_names=data["features_list"], class_names=["B", "M"])
         plt.show()
 
-    cm_display = ConfusionMatrixDisplay(report["confusion matrix"], display_labels=["B", "M"])
-    cm_display.plot()
-    plt.show()
+    if show_matrix:
+        cm_display = ConfusionMatrixDisplay(report["confusion matrix"], display_labels=["B", "M"])
+        cm_display.plot()
+        plt.show()
 
 if __name__ == '__main__': 
     main()
