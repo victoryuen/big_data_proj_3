@@ -3,7 +3,7 @@ from model_training import *
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn import tree, svm
-import matplotlib.pyplot as pltS
+import matplotlib.pyplot as plt
 
 def main():
     print("----- Part 3 -----\n")
