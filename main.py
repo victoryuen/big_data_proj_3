@@ -8,32 +8,38 @@ import matplotlib.pyplot as plt
 def main():
     print("----- Part 3 -----\n")
 
-    data_all_features = get_data();
-    all_features_tree = train_model(data_all_features, DecisionTreeClassifier)
-
-    print("Elapsed time:", all_features_tree["time"], "sec")
-    
-    all_features_tree_report = evaluate_model(data_all_features, all_features_tree["model"])
-
-    print("Accuracy:", all_features_tree_report["accuracy"])
-    print("Sensitivity:", all_features_tree_report["sensitivity"])
-    print("Specificity:", all_features_tree_report["specificity"])
-
-    tree.plot_tree(all_features_tree["model"], fontsize=6, feature_names=data_all_features["features_list"], class_names=["B", "M"])
-    plt.show()
-
-    all_features_tree_cm = ConfusionMatrixDisplay(all_features_tree_report["confusion matrix"], display_labels=["B", "M"])
-    all_features_tree_cm.plot()
-    plt.show()
+    # Decision Tree, no features removed
+    train_evaluate_print([], DecisionTreeClassifier)
 
     print("\n----- Part 4 -----\n")
 
-    all_features_svm = train_model(data_all_features, svm.SVC, "rbf")
+    # SVM, RBF kernel, no features removed
+    train_evaluate_print([], svm.SVC, "rbf")
 
-    print("elapsed time:", all_features_svm["time"], "sec")
+
+def train_evaluate_print(excluded_features: list, classifier: any, kernel: str = ""):
+    data = get_data(excluded_features);
+
+    if kernel == "":
+        trained = train_model(data, classifier)
+    else:
+        trained = train_model(data, classifier, kernel)
+
+    print("Elapsed time:", trained["time"], "sec")
     
-    # "visualize the confusion matrix"
-    # see https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html
+    report = evaluate_model(data, trained["model"])
+
+    print("Accuracy:", report["accuracy"])
+    print("Sensitivity:", report["sensitivity"])
+    print("Specificity:", report["specificity"])
+
+    if classifier == DecisionTreeClassifier:
+        tree.plot_tree(trained["model"], fontsize=6, feature_names=data["features_list"], class_names=["B", "M"])
+        plt.show()
+
+    cm_display = ConfusionMatrixDisplay(report["confusion matrix"], display_labels=["B", "M"])
+    cm_display.plot()
+    plt.show()
 
 if __name__ == '__main__': 
     main()
