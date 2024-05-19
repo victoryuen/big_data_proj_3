@@ -7,8 +7,7 @@ breast_cancer_df = pd.read_csv("breast-cancer.csv") # reading
 # Part 2
 clean_df = breast_cancer_df.dropna() # data cleaning 
 
-def get_data(columns_to_drop=[]):
-    # type: (list) -> dict[str, list]
+def get_data(columns_to_drop:list = []) -> dict[str, list]:
     """
     Returns the testing X and y,
     and training X and y, 

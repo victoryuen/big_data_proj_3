@@ -3,7 +3,7 @@ from model_training import *
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn import tree, svm
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pltS
 
 def main():
     print("----- Part 3 -----\n")
@@ -15,6 +15,20 @@ def main():
 
     # SVM, RBF kernel, no features removed
     train_evaluate_print([], svm.SVC, "rbf")
+
+    print("\n----- Part 6 -----\n")
+
+    # Perform Random Forest to get ranking of features least to most important
+    # see https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html
+
+    # Decision Tree, 1 feature of lowest importance removed
+    # train_evaluate_print([lowest 1], DecisionTreeClassifier)
+
+    # Decision Tree, 4 feature of lowest importance removed
+    # train_evaluate_print([lowest 4], DecisionTreeClassifier)
+
+    # Decision Tree, 10 feature of lowest importance removed
+    # train_evaluate_print([lowest 10], DecisionTreeClassifier)
 
 
 def train_evaluate_print(excluded_features: list, classifier: any, kernel: str = ""):
