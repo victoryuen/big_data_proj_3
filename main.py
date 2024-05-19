@@ -22,12 +22,15 @@ def main():
     # see https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html
 
     # Decision Tree, 1 feature of lowest importance removed
+    print("\n----- Lowest 1 removed -----\n")
     # train_evaluate_print([lowest 1], DecisionTreeClassifier)
 
     # Decision Tree, 4 feature of lowest importance removed
+    print("\n----- Lowest 4 removed -----\n")
     # train_evaluate_print([lowest 4], DecisionTreeClassifier)
 
     # Decision Tree, 10 feature of lowest importance removed
+    print("\n----- Lowest 10 removed -----\n")
     # train_evaluate_print([lowest 10], DecisionTreeClassifier)
 
 
