@@ -1,7 +1,9 @@
 from data_extraction import *
 from model_training import *
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn import tree, svm
+import matplotlib.pyplot as plt
 
 def main():
     print("----- Part 3 -----\n")
@@ -17,14 +19,14 @@ def main():
     print("Sensitivity:", all_features_tree_report["sensitivity"])
     print("Specificity:", all_features_tree_report["specificity"])
 
+    tree.plot_tree(all_features_tree["model"], fontsize=6, feature_names=data_all_features["features_list"], class_names=["B", "M"])
+    plt.show()
 
-    # "Draw the decision tree"
-    # tree.plot_tree(all_features_tree_result["model"])
+    all_features_tree_cm = ConfusionMatrixDisplay(all_features_tree_report["confusion matrix"], display_labels=["B", "M"])
+    all_features_tree_cm.plot()
+    plt.show()
 
-    # "visualize the confusion matrix"
-    # see https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html
-
-    print("----- Part 4 -----\n")
+    print("\n----- Part 4 -----\n")
 
     all_features_svm = train_model(data_all_features, svm.SVC, "rbf")
 

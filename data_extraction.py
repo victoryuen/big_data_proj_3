@@ -22,4 +22,6 @@ def get_data(columns_to_drop=[]):
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2) # split data 80/20
 
-    return {"X_train": X_train, "X_test": X_test, "y_train": y_train, "y_test": y_test}
+    features_list = X.columns.tolist()
+
+    return {"X_train": X_train, "X_test": X_test, "y_train": y_train, "y_test": y_test, "features_list": features_list}
