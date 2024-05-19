@@ -7,11 +7,16 @@ def main():
     print("----- Part 3 -----\n")
 
     data_all_features = get_data();
-    all_features_tree_result = train_and_evaluate_model(data_all_features, DecisionTreeClassifier)
+    all_features_tree = train_model(data_all_features, DecisionTreeClassifier)
 
-    print("elapsed time:", all_features_tree_result["time"])
-    print("report:\n", all_features_tree_result["report"])
+    print("Elapsed time:", all_features_tree["time"], "sec")
     
+    all_features_tree_report = evaluate_model(data_all_features, all_features_tree["model"])
+
+    print("Accuracy:", all_features_tree_report["accuracy"])
+    print("Sensitivity:", all_features_tree_report["sensitivity"])
+    print("Specificity:", all_features_tree_report["specificity"])
+
 
     # "Draw the decision tree"
     # tree.plot_tree(all_features_tree_result["model"])
@@ -21,10 +26,9 @@ def main():
 
     print("----- Part 4 -----\n")
 
-    all_features_svm_result = train_and_evaluate_model(data_all_features, svm.SVC, "rbf")
+    all_features_svm = train_model(data_all_features, svm.SVC, "rbf")
 
-    print("elapsed time:", all_features_svm_result["time"])
-    print("report:\n", all_features_svm_result["report"])
+    print("elapsed time:", all_features_svm["time"], "sec")
     
     # "visualize the confusion matrix"
     # see https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html
