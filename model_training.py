@@ -1,5 +1,7 @@
 import time
 from sklearn.metrics import confusion_matrix, accuracy_score, recall_score
+from sklearn.ensemble import RandomForestClassifier
+from data_extraction import *
 
 # X = inputs
 # y = output
@@ -40,3 +42,17 @@ def evaluate_model(data: dict[str, list], model: any) -> dict[str, any]:
     # specificity = sensitivity of the negative class
  
     return {"confusion matrix": confusion, "accuracy": accuracy, "sensitivity": sensitivity, "specificity": specificity}
+
+def get_feature_importance():
+    """
+    Returns the features sorted from least to most important
+    """
+    data = get_data([])
+    rain_forest_model = RandomForestClassifier(random_state=0)
+    rain_forest_model.fit(data["X_train"],data["y_train"])
+    important_features = pd.DataFrame(rain_forest_model.feature_importances_, index = data["X_dataframe"].columns).sort_values(by=[0],ascending=True) # top features by lowest importance
+    print(important_features.index.values.tolist())
+    print(important_features)
+
+    return {"least_importance_list": important_features.index.values.tolist(), "least_importance_df": important_features}
+
