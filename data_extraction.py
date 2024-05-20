@@ -23,4 +23,4 @@ def get_data(columns_to_drop:list = []) -> dict[str, list]:
 
     features_list = X.columns.tolist()
 
-    return {"X_train": X_train, "X_test": X_test, "y_train": y_train, "y_test": y_test, "features_list": features_list}
+    return {"X_train": X_train, "X_test": X_test, "y_train": y_train, "y_test": y_test, "features_list": features_list, "X_dataframe" :X}
