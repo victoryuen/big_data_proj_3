@@ -15,7 +15,7 @@ def train_model(data: dict[str, list], classifier: any, kernel: str = "") -> dic
     Returns the model itself and the time it took to train it
     """
     if kernel == "":
-        clf = classifier();
+        clf = classifier()
     else:
         clf = classifier(kernel=kernel)
 
