@@ -23,18 +23,18 @@ def main():
 
     # plot bar graph, see link
     print("Displaying graph...\n")
-
+    # print(importance["least_importance_list"][:1])
     # Decision Tree, 1 feature of lowest importance removed
     print("\n----- Lowest 1 removed -----\n")
-    # train_evaluate_print([lowest 1], DecisionTreeClassifier, False)
+    train_evaluate_print(importance["least_importance_list"][:1], DecisionTreeClassifier, False)
 
     # Decision Tree, 4 feature of lowest importance removed
     print("\n----- Lowest 4 removed -----\n")
-    # train_evaluate_print([lowest 4], DecisionTreeClassifier, False)
+    train_evaluate_print(importance["least_importance_list"][:4], DecisionTreeClassifier, False)
 
     # Decision Tree, 10 feature of lowest importance removed
     print("\n----- Lowest 10 removed -----\n")
-    # train_evaluate_print([lowest 10], DecisionTreeClassifier, False)
+    train_evaluate_print(importance["least_importance_list"][:10], DecisionTreeClassifier, False)
 
 
 def train_evaluate_print(excluded_features: list, classifier: any, show_matrix: bool, kernel: str = ""):
