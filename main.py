@@ -17,24 +17,25 @@ def main():
     train_evaluate_print([], svm.SVC, True, "rbf")
 
     print("\n----- Part 6 -----\n")
+    # Random forest method
     importance = get_feature_importance()
-    # Perform Random Forest to get ranking of features least to most important
-    # see https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html
 
-    # plot bar graph, see link
+    # plot graph of top 2 importance
     print("Displaying graph...\n")
-    # print(importance["least_importance_list"][:1])
+
+    # print(importance[:1])
+
     # Decision Tree, 1 feature of lowest importance removed
     print("\n----- Lowest 1 removed -----\n")
-    train_evaluate_print(importance["least_importance_list"][:1], DecisionTreeClassifier, False)
+    train_evaluate_print(importance[:1], DecisionTreeClassifier, False)
 
     # Decision Tree, 4 feature of lowest importance removed
     print("\n----- Lowest 4 removed -----\n")
-    train_evaluate_print(importance["least_importance_list"][:4], DecisionTreeClassifier, False)
+    train_evaluate_print(importance[:4], DecisionTreeClassifier, False)
 
     # Decision Tree, 10 feature of lowest importance removed
     print("\n----- Lowest 10 removed -----\n")
-    train_evaluate_print(importance["least_importance_list"][:10], DecisionTreeClassifier, False)
+    train_evaluate_print(importance[:10], DecisionTreeClassifier, False)
 
 
 def train_evaluate_print(excluded_features: list, classifier: any, show_matrix: bool, kernel: str = ""):

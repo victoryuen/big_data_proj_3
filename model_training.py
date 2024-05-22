@@ -51,8 +51,8 @@ def get_feature_importance():
     rain_forest_model = RandomForestClassifier(random_state=0)
     rain_forest_model.fit(data["X_train"],data["y_train"])
     important_features = pd.DataFrame(rain_forest_model.feature_importances_, index = data["X_dataframe"].columns).sort_values(by=[0],ascending=True) # top features by lowest importance
-    print(important_features.index.values.tolist())
-    print(important_features)
+    # print(important_features.index.values.tolist())
+    #print(important_features)
 
-    return {"least_importance_list": important_features.index.values.tolist(), "least_importance_df": important_features}
+    return important_features.index.values.tolist()
 
