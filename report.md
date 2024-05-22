@@ -35,14 +35,17 @@
 
 #### Terminal
 ```
-goes here
+Elapsed time: 0.00751042366027832 sec
+Accuracy: 0.9035087719298246
+Sensitivity: 0.8292682926829268
+Specificity: 0.9452054794520548
 ```
 
 #### Tree
-// paste pic here
+![alt text](pics/tree%20all.png)
 
 #### Confusion Matrix
-// paste pic here
+![alt text](pics/tree%20matrix%20all.png)
 
 ## Part 4
 
@@ -54,11 +57,14 @@ goes here
 
 #### Terminal
 ```
-goes here
+Elapsed time: 0.002118825912475586 sec
+Accuracy: 0.8859649122807017
+Sensitivity: 0.7916666666666666
+Specificity: 0.9545454545454546
 ```
 
 #### Confusion Matrix
-// paste pic here
+![alt text](<pics/svm matrix all.png>)
 
 ## Part 6
 
@@ -72,33 +78,37 @@ Find the feature importance using Random Forest Method (link provided in referen
 
 ### Output
 
-#### Terminal
-```
-goes here
-```
+#### Top two features
+![alt text](<pics/top two.png>)
 
 #### Trees
 
-##### 1
-// past pic here
+##### 1 removed
+```
+Elapsed time: 0.009986162185668945 sec
+Accuracy: 0.8596491228070176
+Sensitivity: 0.8809523809523809
+Specificity: 0.8472222222222222
+```
+![alt text](<pics/tree 1 removed.png>)
 
-##### 4
-// past pic here
+##### 4 removed
+```
+Elapsed time: 0.007499217987060547 sec
+Accuracy: 0.9035087719298246
+Sensitivity: 0.868421052631579
+Specificity: 0.9210526315789473
+```
+![alt text](<pics/tree 4 removed.png>)
 
-##### 10
-// past pic here
-
-#### Confusion Matrices
-
-##### 1
-// past pic here
-
-##### 4
-// past pic here
-
-##### 10
-// past pic here
-
+##### 10 removed
+```
+Elapsed time: 0.006588459014892578 sec
+Accuracy: 0.9298245614035088
+Sensitivity: 0.8936170212765957
+Specificity: 0.9552238805970149
+```
+![alt text](<pics/tree 10 removed.png>)
 
 ## Part 7
 
@@ -111,12 +121,14 @@ goes here
 - How does removing less important features relevant to Big Data (extremely large dataset)?
 
 ### Response
-- 
-- 
-- 
-- Larger data sets take more time to process, but makes predictions more accurate, so it becomes a balancing act of desired processing time vs desired accuracy.
+- The one from Q6 with the lowest 10 importance removed had the best accuracy, sensitivity, specificity for some reason.
+- The more features removed, the faster the training times.
+- The accuracy of the model and sensitivity and specificity all improved by removing less important features
+- By removing less important features, we can focus on the features that have the most impact on the model. Especially with larger sets of data, the cost spent on training models with irrelevant or little use features would be costly. It's a trade-off for how much computing resources you want to spend versus how much accuracy you want.
 
 ## References
 
 - Pandas documentation: https://pandas.pydata.org/docs/
 - SciKit Learn Documentation: https://scikit-learn.org/stable/user_guide.html
+- Chat GPT: Prompt:How do i visualize the top two columns (feature) in x-y coordinate system using random forest method? But also account for specific output column being not a value but a letter "B" or "M"
+- https://www.youtube.com/watch?v=YkYpGhsCx4c&t
